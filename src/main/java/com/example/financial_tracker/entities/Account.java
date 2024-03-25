@@ -1,5 +1,6 @@
 package com.example.financial_tracker.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,8 +18,8 @@ public class Account {
     @Column(name = "accountDesc", nullable = false)
     private String description;
     private BigDecimal balance;
-
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "ownerId")
-    private User linkedUser;
+    @JoinColumn(name = "ownerId", referencedColumnName = "userId")
+    private User owner;
 }

@@ -16,12 +16,13 @@ public class Transaction {
     private Timestamp timestamp;
     @Column(name = "transactionTitle")
     private String title;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "userId", referencedColumnName = "userId")
     private User user;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "accountId")
+    @JoinColumn(name = "accountId", referencedColumnName = "accountId")
     private Account account;
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "categoryId", referencedColumnName = "categoryId")
     private Category category;
 }
