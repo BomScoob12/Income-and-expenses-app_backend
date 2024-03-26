@@ -20,9 +20,14 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ItemNotFoundException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<ErrorResponse> handleItemNotFoundException(ItemNotFoundException exception, WebRequest request) {
-        System.out.println(request.toString());
         // not implement Request yet
         return buildErrorResponse("Item not found!!!", HttpStatus.NOT_FOUND, exception, request);
+    }
+
+    @ExceptionHandler (DuplicateItemException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<ErrorResponse> handleDuplicateItemException(DuplicateItemException exception, WebRequest request) {
+        return buildErrorResponse("Duplicate items.", HttpStatus.BAD_REQUEST, exception, request);
     }
 
     // handle all error occurred
